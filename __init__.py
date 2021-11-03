@@ -5,9 +5,6 @@ def colorize(string, *args):
     split_len = int(str_len / len(args))
 
     if len(args) == 1:
-        # if args[0] == "end=''":
-        #     print(string)
-        # else:
         return f'\033[38;5;{colors[args[0]]}m{string}\033[0;0m'
 
     else:
@@ -38,5 +35,4 @@ def printc(string, *args):
         if split_len * len(args) != str_len:
             ret_str += colorize(string, i)
 
-        else:
-            print(ret_str)
+        print(ret_str)
