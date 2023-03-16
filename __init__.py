@@ -2,7 +2,9 @@ colors = {'blue': '027', 'cyan': '045', 'green': '048', 'lime': '154', 'yellow':
 
 def colorize(string, *args):
     '''Colorize a string. Arguments must be of type str or tuple. If tuple, the tuple must be of type (str, int), where str is a color and int is number of characters.'''
-    
+
+    string = str(string)
+
     typeCheck = checkArgs(args)
 
     if typeCheck == str:
@@ -36,6 +38,8 @@ def colorize(string, *args):
 def printc(string, *args):
     '''Print a string with color. Arguments must be of type str or tuple. If tuple, the tuple must be of type (str, int), where str is a color and int is number of characters.'''
    
+    string = str(string)
+
     typeCheck = checkArgs(args)
 
     if typeCheck == str:
