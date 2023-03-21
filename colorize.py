@@ -1,10 +1,12 @@
 colors = {  'blue': '027',      # blues
             'cyan': '045',
-            'green': '048',     # greens
+            'forest': '034',    # greens
+            'green': '048',
             'lime': '154',
             'yellow': '011',    # yellows
             'gold': '220',
             'orange': '202',    # oranges
+            'tangerine': '214',
             'red': '160',       # reds
             'maroon': '124',
             'magenta': '199',   # pinks
@@ -12,7 +14,8 @@ colors = {  'blue': '027',      # blues
             'violet': '129',    # purples
             'purple': '055',
             'indigo': '021',
-            'black': '000',     # neutrals
+            'black': '232',     # neutrals
+            'gray': '242',
             'white': '255',
             'brown': '130',
         }
@@ -81,8 +84,11 @@ def printc(string, *args):
         retStr = ''
 
         for i in args:
-            retStr += f'\033[38;5;{colors[i[0]]}m{string[:i[1]]}\033[0;0m'
-            string = string[i[1]:]
+            if type(i) == tuple:
+                retStr += f'\033[38;5;{colors[i[0]]}m{string[:i[1]]}\033[0;0m'
+                string = string[i[1]:]
+            else:
+                retStr += f'\033[38;5;{colors[i]}m{string}\033[0;0m'
 
         print(retStr)
 
@@ -94,7 +100,8 @@ def checkArgs(args):
         if _type == None:
             _type = type(i)
         elif _type != type(i):
-            raise TypeError("Arguments must be of the same type")
+            if type(i) != str or i != args[-1]:
+                raise TypeError("Arguments must be of the same type, or any number of tuples followed by one string")
         
         if type(i) == tuple:
             if len(i) != 2:
